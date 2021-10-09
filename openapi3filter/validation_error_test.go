@@ -176,13 +176,13 @@ func getValidationTests(t *testing.T) []*validationTest {
 		{
 			name: "error - missing required query string parameter",
 			args: validationArgs{
-				r: newPetstoreRequest(t, http.MethodGet, "/pet/findByStatus", nil),
+				r: newPetstoreRequest(t, http.MethodGet, "/pet/findByTags", nil),
 			},
-			wantErrParam:   "status",
+			wantErrParam:   "tags",
 			wantErrParamIn: "query",
 			wantErrReason:  ErrInvalidRequired.Error(),
 			wantErrResponse: &ValidationError{Status: http.StatusBadRequest,
-				Title: `parameter "status" in query is required`},
+				Title: `parameter "tags" in query is required`},
 		},
 		{
 			name: "error - wrong query string parameter type",
